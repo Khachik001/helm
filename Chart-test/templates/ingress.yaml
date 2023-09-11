@@ -14,5 +14,5 @@ spec:
           service:
             name: {{ .Release.Name }}-hostname-svc # Name of the service to forward traffic to
             port:
-              number: {{ .Values.ports.lb_port }}  # Port number on the service to forward traffic to
+              number: {{ .Values.ports.lb_port }}  # Port number on the service to forward traffic to 
 
