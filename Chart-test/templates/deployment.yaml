@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-deploy
+  name: {{ .Release.Name }}-deploy  # Define the name of the Deployment
   labels:
-    type: deployment
-spec:
-  replicas: {{ .Values.replicaCount }}
+    type: deployment    #Label to identify this resource as a deployment
+spec: 
+  replicas: {{ .Values.replicaCount }} # Number of replicas to maintain for the application
   selector:
     matchLabels:
-      application: {{ .Release.Name }}-hostname
+      application: {{ .Release.Name }}-hostname 
   template:
     metadata:
       labels:
-        application: {{ .Release.Name }}-hostname
+        application: {{ .Release.Name }}-hostname 
     spec:
       containers:
       - name: {{ .Release.Name }}-hostname-print
-        image: "{{ .Values.containers.image }}:{{ .Values.containers.tag }}"
+        image: "{{ .Values.containers.image }}:{{ .Values.containers.tag }}" # Define the image for the container
         ports:
-        - containerPort: {{ .Values.ports.container_port }}
+        - containerPort: {{ .Values.ports.container_port }}  # Port exposed within the container for the application
