@@ -19,3 +19,8 @@ spec:
         image: "{{ .Values.containers.image }}:{{ .Values.containers.tag }}" # Define the image for the container
         ports:
         - containerPort: {{ .Values.ports.container_port }}  # Port exposed within the container for the application
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "500m"
+        
