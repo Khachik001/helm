@@ -1,4 +1,4 @@
-replicaCount: 3
+replicaCount: 1
 
 containers:
   image: 548844171305.dkr.ecr.us-east-2.amazonaws.com/dimple-app
