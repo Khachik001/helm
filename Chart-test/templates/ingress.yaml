@@ -2,19 +2,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Release.Name }}-ingress  # Specify the Ingress controller class to use (e.g., nginx)
+  name: {{ .Release.Name }}-ingress
 spec:
   ingressClassName: nginx
   rules:
-  - host: {{ .Values.host  }}  # Hostname to match for incoming requests
+  - host: {{ .Values.host }}
     http:
       paths:
-      - pathType: Prefix # Define the path type as Prefix
-        path: "/"  # Define the path pattern to match ("/" means all requests)
+      - pathType: Prefix
+        path: "/"
         backend:
           service:
-            name: {{ .Release.Name }}-hostname-svc # Name of the service to forward traffic to
+            name: {{ .Release.Name }}-hostname-svc
             port:
-              number: {{ .Values.ports.lb_port }}  # Port number on the service to forward traffic to 
+              number: {{ .Values.ports.lb_port }}
 {{- end }}
-
