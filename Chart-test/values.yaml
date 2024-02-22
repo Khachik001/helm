@@ -1,5 +1,4 @@
-myingress: 
- enabled: true
+
 replicaCount: 1
 
 containers:
