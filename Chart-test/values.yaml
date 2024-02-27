@@ -11,4 +11,4 @@ ports:
   lb_port: 80
 
 
-host: kub.am
+host: api.velvioo.brainscale.cloud
