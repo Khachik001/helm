@@ -10,8 +10,8 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - api.velvioo.brainscale.cloud
-      secretName: api-secret
+      - api.velvioo.brainscale.cloud
+    secretName: api-secret
   rules:
   - host: api.velvioo.brainscale.cloud
     http:
