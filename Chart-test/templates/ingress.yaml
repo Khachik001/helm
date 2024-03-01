@@ -19,7 +19,7 @@ spec:
     - {{ .Values.host }}
       secretName: api-secret
   rules:
-  - host: your-domain.com
+  - host: {{ .Values.host }}
     http:
       paths:
       - path: /
