@@ -3,17 +3,55 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ .Release.Name }}-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-set-header: "X-Real-IP $remote_addr"
+    nginx.ingress.kubernetes.io/proxy-set-header: "X-Forwarded-For $proxy_add_x_forwarded_for"
+    nginx.ingress.kubernetes.io/proxy-set-header: "Upgrade $http_upgrade"
+    nginx.ingress.kubernetes.io/proxy-set-header: "Connection upgrade"
+    nginx.ingress.kubernetes.io/proxy-set-header: "Host $host"
 spec:
   ingressClassName: nginx
+  tls:
+ - hosts:
+   - {{ .Values.host }}
+     secretName: api-secret
   rules:
-  - host: {{ .Values.host }}
+  - host: your-domain.com
     http:
       paths:
-      - pathType: Prefix
-        path: "/"
+      - path: /
+        pathType: Prefix
         backend:
           service:
             name: {{ .Release.Name }}-hostname-svc
             port:
-              number: {{ .Values.ports.lb_port }}
+              number: 8085
+      - path: /api/v2/ride/
+        pathType: Prefix
+        backend:
+          service:
+            name: ride-app-hostname-svc
+            port:
+              number: 8088
+      - path: /api/v2/user/
+        pathType: Prefix
+        backend:
+          service:
+            name: user-app-hostname-svc
+            port:
+              number: 8087
+  # rules:
+  # - host: {{ .Values.host }}
+  #   http:
+  #     paths:
+  #     - pathType: Prefix
+  #       path: "/"
+  #       backend:
+  #         service:
+  #           name: {{ .Release.Name }}-hostname-svc
+  #           port:
+  #             number: {{ .Values.ports.lb_port }}
 {{- end }}
