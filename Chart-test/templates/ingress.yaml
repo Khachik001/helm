@@ -15,9 +15,9 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
- - hosts:
-   - {{ .Values.host }}
-     secretName: api-secret
+  - hosts:
+    - {{ .Values.host }}
+      secretName: api-secret
   rules:
   - host: your-domain.com
     http:
@@ -43,15 +43,4 @@ spec:
             name: user-app-hostname-svc
             port:
               number: 8087
-  # rules:
-  # - host: {{ .Values.host }}
-  #   http:
-  #     paths:
-  #     - pathType: Prefix
-  #       path: "/"
-  #       backend:
-  #         service:
-  #           name: {{ .Release.Name }}-hostname-svc
-  #           port:
-  #             number: {{ .Values.ports.lb_port }}
 {{- end }}
