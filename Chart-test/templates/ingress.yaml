@@ -15,25 +15,14 @@ spec:
   - host: {{ .Values.host }}
     http:
       paths:
-      - path: /
+      {{- range .Values.items }}
+      - path: {{ .prefix }}
         pathType: Prefix
         backend:
           service:
-            name: {{ .Release.Name }}-hostname-svc
+            name: {{ .serviceName }}
             port:
-              number: {{ .Values.ports.lb_port }}
-      - path: /api/v2/ride/
-        pathType: Prefix
-        backend:
-          service:
-            name: ride-app-hostname-svc
-            port:
-              number: {{ .Values.ports.lb_port }}
-      - path: /api/v2/user/
-        pathType: Prefix
-        backend:
-          service:
-            name: user-app-hostname-svc
-            port:
-              number: {{ .Values.ports.lb_port }}
+              number: 80      
+       {{- end }} 
+
 {{- end }}
