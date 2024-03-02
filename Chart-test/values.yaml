@@ -11,11 +11,11 @@ ports:
   lb_port: 80
 
 items:
-- serviceName: simple-app-hostname-svc
+- serviceName: simple-app
   prefix: /
-- serviceName: user-app-hostname-svc
+- serviceName: user-app
   prefix: /api/v2/user/
-- serviceName: ride-app-hostname-svc
+- serviceName: ride-app
   prefix: /api/v2/ride/
 
 host: api.velvioo.brainscale.cloud
