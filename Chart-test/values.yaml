@@ -10,5 +10,12 @@ ports:
   container_port: 8085
   lb_port: 80
 
+items:
+- serviceName: simple-app-hostname-svc
+  prefix: /
+- serviceName: user-app-hostname-svc
+  prefix: /api/v2/user/
+- serviceName: ride-app-hostname-svc
+  prefix: /api/v2/ride/
 
 host: api.velvioo.brainscale.cloud
