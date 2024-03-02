@@ -21,19 +21,19 @@ spec:
           service:
             name: {{ .Release.Name }}-hostname-svc
             port:
-              number: 8085
+              number: {{ .Values.ports.lb_port }}
       - path: /api/v2/ride/
         pathType: Prefix
         backend:
           service:
             name: ride-app-hostname-svc
             port:
-              number: 8088
+              number: {{ .Values.ports.lb_port }}
       - path: /api/v2/user/
         pathType: Prefix
         backend:
           service:
             name: user-app-hostname-svc
             port:
-              number: 8087
+              number: {{ .Values.ports.lb_port }}
 {{- end }}
