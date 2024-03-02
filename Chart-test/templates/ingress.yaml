@@ -20,7 +20,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: {{ .serviceName }}
+            name: {{ .serviceName }}-hostname-svc
             port:
               number: 80      
        {{- end }} 
