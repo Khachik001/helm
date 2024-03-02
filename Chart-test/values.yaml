@@ -17,5 +17,7 @@ items:
   prefix: /api/v2/user/
 - serviceName: ride-app-hostname-svc
   prefix: /api/v2/ride/
+- serviceName: test-app-hostname-svc
+  prefix: /api/v2/test/  
 
 host: api.velvioo.brainscale.cloud
