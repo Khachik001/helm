@@ -14,6 +14,10 @@ spec:
       labels:
         application: {{ .Release.Name }}-hostname 
     spec:
+      tolerations:
+      - key: "appskey"
+        operator: "Exists"
+        effect: "NoSchedule"    
       containers:
       - name: {{ .Release.Name }}-hostname-print
         image: "{{ .Values.containers.image }}:{{ .Values.containers.tag }}" # Define the image for the container
