@@ -9,7 +9,10 @@ containers:
 ports:
   container_port: 8085
   lb_port: 80
-
+tolerations:
+- key: "appskey"
+  operator: "Exists"
+  effect: "NoSchedule"
 items:
 - serviceName: main
   prefix: /
