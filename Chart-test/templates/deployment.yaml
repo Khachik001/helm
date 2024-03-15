@@ -14,10 +14,13 @@ spec:
       labels:
         application: {{ .Release.Name }}-hostname 
     spec:
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
       tolerations:
-      - key: "appskey"
-        operator: "Exists"
-        effect: "NoSchedule"    
+        {{- toYaml . | nindent 8 }}
+      {{- end }}   
       containers:
       - name: {{ .Release.Name }}-hostname-print
         image: "{{ .Values.containers.image }}:{{ .Values.containers.tag }}" # Define the image for the container
