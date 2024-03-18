@@ -29,6 +29,6 @@ spec:
         - containerPort: {{ .Values.ports.container_port }}  # Port exposed within the container for the application
         resources:
           requests:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "1Gi"
+            cpu: "1Gi"
         
