@@ -5,7 +5,6 @@ metadata:
   labels:
     type: deployment    #Label to identify this resource as a deployment
 spec: 
-  replicas: {{ .Values.replicaCount }} # Number of replicas to maintain for the application
   selector:
     matchLabels:
       application: {{ .Release.Name }}-hostname 
