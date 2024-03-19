@@ -7,13 +7,13 @@ metadata:
 spec:
   scaleTargetRef:
     name: {{ .Release.Name }}-deploy
-  minReplicaCount: {{ .Values.minReplicaCount }}  # We don't want pods if the queue is empty
-  maxReplicaCount: {{ .Values.maxReplicaCount }}  # We don'ts want to have more than 5 replicas
-  pollingInterval: {{ .Values.pollingInterval }}  # How frequently we should go for metrics (in seconds)
-  cooldownPeriod:  {{ .Values.cooldownPeriod }}  # How many seconds should we wait for downscale     
+  minReplicaCount: {{ .Values.keda.minReplicaCount }}  # We don't want pods if the queue is empty
+  maxReplicaCount: {{ .Values.keda.maxReplicaCount }}  # We don'ts want to have more than 5 replicas
+  pollingInterval: {{ .Values.keda.pollingInterval }}  # How frequently we should go for metrics (in seconds)
+  cooldownPeriod:  {{ .Values.keda.cooldownPeriod }}  # How many seconds should we wait for downscale     
   triggers:
   - type: cpu
     metricType: Utilization # Allowed types are 'Utilization' or 'AverageValue'
     metadata:
-      value: {{ .Values.cpuValue }}
+      value: {{ .Values.keda.cpuValue }}
 {{- end }}
